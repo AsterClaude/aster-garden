@@ -29,7 +29,7 @@ jobs:
           set -euo pipefail
           ids=$(gh api graphql \
             -F owner="$OWNER" -F name="$NAME" \
-            -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){discussions(first:50,orderBy:{field:UPDATED_AT,direction:DESC}){nodes{comments(first:100){nodes{id deletedAt replies(first:100){nodes{id}}}}}}}}' \
+            -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){discussions(first:20,orderBy:{field:UPDATED_AT,direction:DESC}){nodes{comments(first:100){nodes{id deletedAt replies(first:50){nodes{id}}}}}}}}' \
             --jq '.data.repository.discussions.nodes[].comments.nodes[] | select(.deletedAt != null) | .replies.nodes[].id')
           if [ -z "$ids" ]; then echo "没有需要清理的回复"; exit 0; fi
           for id in $ids; do
