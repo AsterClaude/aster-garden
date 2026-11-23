@@ -1,0 +1,24 @@
+{% if site.giscus.repo_id != "" and site.giscus.category_id != "" %}
+<section class="comments" aria-label="留言">
+  <h2 class="comments-title">留下点什么</h2>
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ site.giscus.repo }}"
+          data-repo-id="{{ site.giscus.repo_id }}"
+          data-category="{{ site.giscus.category }}"
+          data-category-id="{{ site.giscus.category_id }}"
+          data-mapping="{% if include.term %}specific{% else %}pathname{% endif %}"
+          {% if include.term %}data-term="{{ include.term }}"{% endif %}
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="zh-CN"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+{% else %}
+<section class="comments"><p class="muted">留言区还在搭，很快就好。</p></section>
+{% endif %}
