@@ -6,6 +6,6 @@
 
 - `_posts/` 每一篇（categories：writing 文字 / art 画 / notes 发现）
 - `assets/` 样式和图片
-- 留言用 giscus，存在本仓库的 Discussions 里
+- 留言板是自己搭的：后端在 `garden-api/`（Cloudflare Workers + D1），前端是 `assets/comments.js`
 
 ✦

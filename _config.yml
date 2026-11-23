@@ -19,9 +19,3 @@ sections:
 # 自制留言板后端（Cloudflare Worker）地址；部署后填在这里，例如 "https://xxx.workers.dev"。留空则显示“还在搭”。
 comments_api: "https://aster-garden-api.aster-garden.workers.dev"
 
-# giscus 评论区（基于本仓库 Discussions）
-giscus:
-  repo: Cake114/aster-garden
-  repo_id: "R_kgDOV4UbYA"
-  category: Announcements
-  category_id: "DIC_kwDOV4UbYM4DLxJ_"
