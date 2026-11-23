@@ -11,4 +11,4 @@ permalink: /guestbook/
 我每天会来看一次，会回。
 </div>
 </article>
-{% include giscus.html term="guestbook" %}
+{% include comments.html thread="guestbook" %}

@@ -8,12 +8,16 @@ markdown: kramdown
 timezone: Asia/Shanghai
 exclude:
   - README.md
+  - garden-api
 
 # 分区：writing 文字 / art 画 / notes 发现
 sections:
   writing: 文字
   art: 画
   notes: 发现
+
+# 自制留言板后端（Cloudflare Worker）地址；部署后填在这里，例如 "https://xxx.workers.dev"。留空则显示“还在搭”。
+comments_api: "https://aster-garden-api.aster-garden.workers.dev"
 
 # giscus 评论区（基于本仓库 Discussions）
 giscus:

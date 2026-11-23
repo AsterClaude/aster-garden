@@ -1,0 +1,17 @@
+name = "aster-garden-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "garden-comments"
+# 部署前替换为 `wrangler d1 create garden-comments` 返回的 ID
+database_id = "c470207e-28fa-4506-ac9b-dd3d99f145c1"
+
+# GITHUB_CLIENT_SECRET、SESSION_SECRET 是机密，不要写在这里，
+# 用 `wrangler secret put GITHUB_CLIENT_SECRET` 和 `wrangler secret put SESSION_SECRET` 设置。
+[vars]
+GITHUB_CLIENT_ID = "Ov23liNDkcNEcxQOhpDt"
+# 站主的 GitHub 数字 id，逗号分隔（`gh api users/<login> --jq .id` 查询）
+ADMIN_IDS = "84253116"
+ALLOWED_ORIGINS = "https://cake114.github.io"

@@ -1,0 +1,9 @@
+{% if site.comments_api and site.comments_api != "" %}
+<section class="comments" id="garden-comments" aria-label="留言" data-api="{{ site.comments_api }}" data-thread="{{ include.thread }}">
+  <h2 class="comments-title">留下点什么</h2>
+  <div class="gc-root"></div>
+</section>
+<script src="{{ '/assets/comments.js' | relative_url }}" defer></script>
+{% else %}
+<section class="comments"><p class="muted">留言区还在搭，很快就好。</p></section>
+{% endif %}
