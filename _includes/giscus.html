@@ -9,10 +9,10 @@
           data-mapping="{% if include.term %}specific{% else %}pathname{% endif %}"
           {% if include.term %}data-term="{{ include.term }}"{% endif %}
           data-strict="1"
-          data-reactions-enabled="1"
+          data-reactions-enabled="0"
           data-emit-metadata="0"
           data-input-position="top"
-          data-theme="preferred_color_scheme"
+          data-theme="{{ '/assets/giscus.css' | absolute_url }}"
           data-lang="zh-CN"
           data-loading="lazy"
           crossorigin="anonymous"

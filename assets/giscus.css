@@ -1,0 +1,142 @@
+/* Aster 的留言区主题：在 giscus 默认主题上覆盖成花园的样子 */
+@import url("https://giscus.app/themes/light.css");
+@import url("https://giscus.app/themes/dark.css") (prefers-color-scheme: dark);
+
+main {
+  color-scheme: light;
+  --g-bg: #f7f5f0;
+  --g-card: #fffdf8;
+  --g-fg: #2b2a33;
+  --g-muted: #7a7788;
+  --g-line: #e4e0d8;
+  --g-accent: #6b5bd6;
+  --g-accent-soft: rgba(107, 91, 214, .10);
+  --g-on-accent: #ffffff;
+
+  --color-canvas-default: var(--g-card);
+  --color-canvas-subtle: var(--g-bg);
+  --color-canvas-inset: var(--g-bg);
+  --color-canvas-overlay: var(--g-card);
+  --color-fg-default: var(--g-fg);
+  --color-fg-muted: var(--g-muted);
+  --color-fg-subtle: var(--g-muted);
+  --color-border-default: var(--g-line);
+  --color-border-muted: var(--g-line);
+  --color-accent-fg: var(--g-accent);
+  --color-accent-emphasis: var(--g-accent);
+  --color-accent-muted: var(--g-accent-soft);
+  --color-accent-subtle: var(--g-accent-soft);
+  --color-neutral-muted: var(--g-accent-soft);
+  --color-btn-bg: transparent;
+  --color-btn-text: var(--g-fg);
+  --color-btn-border: var(--g-line);
+  --color-btn-hover-bg: var(--g-accent-soft);
+  --color-btn-hover-border: var(--g-accent);
+  --color-btn-active-bg: var(--g-accent-soft);
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-btn-primary-bg: var(--g-accent);
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-hover-bg: var(--g-accent);
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-text: var(--g-on-accent);
+  --color-btn-primary-shadow: none;
+  --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-disabled-bg: var(--g-accent-soft);
+  --color-btn-primary-disabled-border: transparent;
+  --color-btn-primary-disabled-text: var(--g-muted);
+  --color-segmented-control-bg: transparent;
+  --color-segmented-control-button-bg: var(--g-card);
+  --color-segmented-control-button-selected-border: var(--g-line);
+  --color-primer-shadow-inset: none;
+  --color-social-reaction-bg-hover: var(--g-accent-soft);
+  --color-social-reaction-bg-reacted-hover: var(--g-accent-soft);
+
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+@media (prefers-color-scheme: dark) {
+  main {
+    color-scheme: dark;
+    --g-bg: #0f1020;
+    --g-card: #15172b;
+    --g-fg: #e6e4f0;
+    --g-muted: #9a97b0;
+    --g-line: #262842;
+    --g-accent: #a99bff;
+    --g-accent-soft: rgba(169, 155, 255, .12);
+    --g-on-accent: #0f1020;
+  }
+}
+
+/* 页面本身透明，让花园的星空透出来 */
+html, body, main { background: transparent !important; }
+
+/* 顶部的“N 条评论”：小而安静 */
+.gsc-header { padding-bottom: 4px; border: 0; }
+.gsc-comments-count, .gsc-left-header { color: var(--g-muted); font-size: 13px; font-weight: 400; }
+.gsc-comments-count h4, .gsc-left-header h4 { font-weight: 400; }
+
+/* 写留言的框 */
+.gsc-comment-box {
+  border: 1px solid var(--g-line) !important;
+  border-radius: 12px !important;
+  background: var(--g-card) !important;
+  overflow: hidden;
+}
+.gsc-comment-box-tabs { background: transparent !important; border-bottom: 1px solid var(--g-line) !important; }
+.gsc-comment-box-textarea, textarea {
+  font-family: inherit !important;
+  font-size: 15px !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+}
+.gsc-comment-box-bottom { border-top: 0 !important; }
+.gsc-comment-box-buttons .btn, .gsc-comment-box-buttons button { border-radius: 999px !important; padding-left: 16px; padding-right: 16px; }
+
+/* 每一条留言：一张安静的卡片 */
+.gsc-timeline::before, .gsc-comments::before { display: none !important; }
+.gsc-comment {
+  margin-top: 14px;
+}
+.gsc-comment > div {
+  border: 1px solid var(--g-line) !important;
+  border-radius: 12px !important;
+  background: var(--g-card) !important;
+  box-shadow: none !important;
+}
+.gsc-comment-header { background: transparent !important; border-bottom: 0 !important; padding-bottom: 0 !important; }
+.gsc-comment-author { font-weight: 600; }
+.gsc-comment-author-avatar img, .gsc-comment img.avatar, .gsc-reply img.avatar { border-radius: 50% !important; }
+.gsc-comment-header time, .gsc-comment-header a.link-secondary {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--g-muted) !important;
+}
+.gsc-comment-content { padding-top: 4px !important; }
+.gsc-comment-content p { margin: .4em 0; }
+
+/* 回复：缩进一点，用一条细线和原留言连起来 */
+.gsc-replies {
+  background: transparent !important;
+  border-top: 1px dashed var(--g-line) !important;
+}
+.gsc-reply { padding-top: 8px; }
+.gsc-reply-box { background: transparent !important; border-top: 1px dashed var(--g-line) !important; }
+.gsc-reply-box button, .gsc-reply-box .form-control {
+  border-radius: 999px !important;
+  font-family: inherit;
+}
+
+/* 去掉表情反应，让留言只是说话 */
+.gsc-reactions, .gsc-social-reaction-summary-item, .gsc-comment-footer .gsc-reactions-button { display: none !important; }
+
+/* “加载更多”按钮 */
+.gsc-pagination-button { border-radius: 999px !important; }
+
+/* giscus 署名留着，但放轻 */
+.gsc-powered-by, .gsc-powered-by a { color: var(--g-muted) !important; font-size: 12px; opacity: .7; }
+
+a { color: var(--g-accent); }
