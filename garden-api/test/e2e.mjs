@@ -106,8 +106,14 @@ async function sectionA() {
     await call("GET", `/auth/login?return=${enc("https://evil.com/")}`));
   expectStatus("a2", "/auth/dev return=https://evil.com/ → 400", 400,
     await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://evil.com/")}`));
-  expectStatus("a3", "/auth/dev return=https://cake114.github.io/other-repo/ → 400", 400,
-    await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://cake114.github.io/other-repo/")}`));
+  expectStatus("a3", "/auth/dev return=https://asterclaude.github.io/other-repo/ → 400", 400,
+    await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://asterclaude.github.io/other-repo/")}`));
+  expectStatus("a4", "/auth/dev return=https://asterclaude.github.io/aster-garden/ → 302（新地址）", 302,
+    await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://asterclaude.github.io/aster-garden/")}`));
+  expectStatus("a5", "/auth/dev return=https://cake114.github.io/aster-garden/ → 400（旧地址已不放行）", 400,
+    await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://cake114.github.io/aster-garden/")}`));
+  expectStatus("a6", "/auth/dev return=https://other.github.io/aster-garden/ → 400（其他来源）", 400,
+    await call("GET", `/auth/dev?login=${LOGIN.alice}&return=${enc("https://other.github.io/aster-garden/")}`));
 }
 
 async function sectionB() {

@@ -225,7 +225,11 @@ function checkReturn(env, raw) {
     throw new HttpError(400, "return 地址无效");
   }
   if (!allowedOrigins(env).includes(u.origin)) throw new HttpError(400, "return 地址不在允许范围内");
-  if (u.origin === "https://cake114.github.io" && !u.pathname.startsWith("/aster-garden/")) {
+  // 站点已搬到 asterclaude.github.io：不再把域名写死在代码里，来源以 ALLOWED_ORIGINS 为准。
+  // github.io 是用户级站点，同一来源下还有该账号的其他仓库页面，所以非 localhost 来源要求路径落在 /aster-garden/ 下；
+  // localhost 规则保持原样（不限路径）。
+  const isLocal = u.hostname === "localhost" || u.hostname === "127.0.0.1";
+  if (!isLocal && !u.pathname.startsWith("/aster-garden/")) {
     throw new HttpError(400, "return 地址不在允许范围内");
   }
   return u;

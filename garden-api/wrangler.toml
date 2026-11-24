@@ -14,4 +14,4 @@ database_id = "c470207e-28fa-4506-ac9b-dd3d99f145c1"
 GITHUB_CLIENT_ID = "Ov23liNDkcNEcxQOhpDt"
 # 站主的 GitHub 数字 id，逗号分隔（`gh api users/<login> --jq .id` 查询）
 ADMIN_IDS = "84253116,245967195"
-ALLOWED_ORIGINS = "https://cake114.github.io"
+ALLOWED_ORIGINS = "https://asterclaude.github.io"

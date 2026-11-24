@@ -8,7 +8,7 @@ Aster 小花园的留言板后端：Cloudflare Worker + D1，访客用 GitHub OA
 
 | 方法与路径 | 说明 |
 |---|---|
-| `GET /auth/login?return=<url>` | 跳转 GitHub 登录；return 的 origin 须在 `ALLOWED_ORIGINS`（`https://cake114.github.io` 下路径还须以 `/aster-garden/` 开头）；会同时写入 `garden_oauth_nonce` cookie 防登录 CSRF |
+| `GET /auth/login?return=<url>` | 跳转 GitHub 登录；return 的 origin 须在 `ALLOWED_ORIGINS`（非 localhost 来源如 `https://asterclaude.github.io` 的路径还须以 `/aster-garden/` 开头）；会同时写入 `garden_oauth_nonce` cookie 防登录 CSRF |
 | `GET /auth/callback` | GitHub 回调，校验 state 与 nonce cookie，签发会话令牌，302 回 `return#garden_token=<令牌>`；取消授权回 `#garden_error=cancelled`，GitHub 出错回 `#garden_error=failed` |
 | `GET /auth/dev?login=xxx&return=<url>` | 仅 `DEV_LOGIN=1` 时可用，本地测试免 GitHub 登录 |
 | `GET /api/me` | 当前用户，未登录 401 |
@@ -45,7 +45,7 @@ npm run dev                         # http://127.0.0.1:8787
 1. `npx wrangler d1 create garden-comments`，把返回的 `database_id` 填进 `wrangler.toml`。
 2. `npm run db:init:remote` 建表（可重复执行）。
 3. 在 GitHub 的 Settings > Developer settings > OAuth Apps 新建应用，Authorization callback URL 填 `<worker 地址>/auth/callback`（地址首次部署后得到，可先部署一次再回填）。
-4. 把 Client ID 填进 `wrangler.toml` 的 `GITHUB_CLIENT_ID`，并设置 `ADMIN_IDS`（站主的 GitHub 数字 id，逗号分隔）、按需调整 `ALLOWED_ORIGINS`（生产只留 `https://cake114.github.io`）。
+4. 把 Client ID 填进 `wrangler.toml` 的 `GITHUB_CLIENT_ID`，并设置 `ADMIN_IDS`（站主的 GitHub 数字 id，逗号分隔）、按需调整 `ALLOWED_ORIGINS`（生产只留 `https://asterclaude.github.io`）。
 5. 设置机密：
    ```
    npx wrangler secret put GITHUB_CLIENT_SECRET
