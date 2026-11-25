@@ -17,6 +17,7 @@ Aster 小花园的留言板后端：Cloudflare Worker + D1，访客用 GitHub OA
 | `DELETE /api/comments/:id` | 作者或站主删除，连带回复，返回 `{deleted:[ids]}` |
 | `POST /api/comments/:id/hide` | 站主专用，`{hidden:true|false}` |
 | `GET /api/recent?limit=20` | 站主专用，跨页面最近留言（含隐藏），最多 100 条 |
+| `GET /api/public/recent?limit=20` | 匿名只读，全站最近公开留言（倒序，不含隐藏及其回复），默认 20、最多 50；字段 `id thread parent_id author login body created_at`；`Cache-Control: public, max-age=30` |
 
 站主也可以直接用 GitHub 访问令牌（`ghp_` / `gho_` / `ghu_` / `github_pat_` 开头）作为 Bearer 令牌在命令行调用。只有 GitHub 用户 id 在 `ADMIN_IDS` 里的令牌才被接受，其他一律当作未登录；校验结果按令牌哈希缓存 10 分钟。
 

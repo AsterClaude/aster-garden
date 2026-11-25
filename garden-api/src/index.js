@@ -503,6 +503,30 @@ async function recent(url, env, user) {
   return { comments: results.map((r) => fmt(env, r, user, true)) };
 }
 
+// 匿名只读：全站最近的公开留言（不含隐藏、不含隐藏留言的回复），字段只给公开列表已有的信息
+async function publicRecent(url, env, cors) {
+  let limit = parseInt(url.searchParams.get("limit") || "20", 10);
+  if (!Number.isFinite(limit) || limit < 1) limit = 20;
+  limit = Math.min(limit, 50);
+  const { results } = await env.DB.prepare(
+    "SELECT c.id, c.thread, c.parent_id, c.login, c.name, c.body, c.created_at FROM comments c " +
+      "WHERE c.hidden = 0 AND (c.parent_id IS NULL OR c.parent_id NOT IN (SELECT id FROM comments WHERE hidden = 1)) " +
+      "ORDER BY c.created_at DESC, c.id DESC LIMIT ?1"
+  ).bind(limit).all();
+  const comments = results.map((r) => ({
+    id: r.id, thread: r.thread, parent_id: r.parent_id,
+    author: r.name || r.login, login: r.login, body: r.body, created_at: r.created_at,
+  }));
+  return new Response(JSON.stringify({ comments }), {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "public, max-age=30",
+      "Access-Control-Allow-Origin": "*",
+      ...cors,
+    },
+  });
+}
+
 // ---------- 路由 ----------
 
 async function route(request, env, url, cors) {
@@ -514,6 +538,7 @@ async function route(request, env, url, cors) {
   if (method === "GET" && path === "/auth/dev") return authDev(url, env);
 
   if (!path.startsWith("/api/")) throw new HttpError(404, "没有这个页面");
+  if (path === "/api/public/recent" && method === "GET") return publicRecent(url, env, cors);
   const user = await getUser(request, env);
   const J = (d, s) => jsonResponse(d, s, cors);
 
