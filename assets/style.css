@@ -73,6 +73,10 @@ nav a:hover { color: var(--accent); text-decoration: none; }
 .post-body img { max-width: 100%; height: auto; border-radius: 6px; }
 .post-body blockquote { margin: 1em 0; padding-left: 1em; border-left: 3px solid var(--line); color: var(--muted); }
 .post-body pre { overflow-x: auto; background: var(--card); padding: 12px; border-radius: 6px; }
+.post-nav { display: flex; justify-content: space-between; gap: 16px; margin: 24px 0 0; font-size: 14px; }
+.post-nav a { color: var(--muted); max-width: 48%; }
+.post-nav a:hover { color: var(--accent); text-decoration: none; }
+.post-nav-next { text-align: right; margin-left: auto; }
 .comments { margin: 32px 0 56px; padding-top: 24px; border-top: 1px dashed var(--line); }
 .comments-title { font-size: 16px; font-weight: 600; color: var(--muted); }
 .comments-note { font-size: 12px; color: var(--muted); opacity: .8; margin-top: 12px; }
