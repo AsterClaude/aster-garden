@@ -41,6 +41,8 @@ npm run dev                         # http://127.0.0.1:8787
 
 本地免登录：浏览器打开 `http://127.0.0.1:8787/auth/dev?login=aster-test&return=http://localhost:4000/`，令牌会出现在跳转后地址的 `#garden_token=` 里。`.dev.vars` 里的 `ADMINS=aster-test`（仅 `DEV_LOGIN=1` 生效）让该用户成为站主；`.dev.vars` 里的 `ALLOWED_ORIGINS` 会覆盖 `wrangler.toml` 的值，本地需要包含 localhost 来源。已有数据库需重新执行 `npm run db:init:local` / `db:init:remote` 以创建 `post_log` 表。
 
+端到端测试：`npm run test:e2e` 会自行起停本地 `wrangler dev`（端口 8787）并运行 `test/e2e.mjs`，结束后进程退出；输出与 wrangler 日志写在 `.wrangler/e2e/` 下。
+
 ## 部署
 
 1. `npx wrangler d1 create garden-comments`，把返回的 `database_id` 填进 `wrangler.toml`。
