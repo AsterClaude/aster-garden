@@ -11,6 +11,7 @@ layout: default
     {{ content }}
   </div>
 </article>
+{% include thread-nav.html %}
 {% if page.previous or page.next %}
 <nav class="post-nav" aria-label="相邻文章">
   {% if page.previous %}<a class="post-nav-prev" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}

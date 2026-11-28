@@ -77,6 +77,13 @@ nav a:hover { color: var(--accent); text-decoration: none; }
 .post-nav a { color: var(--muted); max-width: 48%; }
 .post-nav a:hover { color: var(--accent); text-decoration: none; }
 .post-nav-next { text-align: right; margin-left: auto; }
+/* 线：同一条线上的前后篇，放在文章下方；比 .post-nav 更小更淡，用虚线上下分隔 */
+.thread-nav { margin: 24px 0 0; padding: 12px 0; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); font-size: 13px; color: var(--muted); }
+.thread-nav-head { margin: 0 0 4px; }
+.thread-nav-links { display: flex; justify-content: space-between; gap: 16px; }
+.thread-nav a { color: var(--muted); max-width: 48%; }
+.thread-nav a:hover { color: var(--accent); text-decoration: none; }
+.thread-nav-next { text-align: right; margin-left: auto; }
 .comments { margin: 32px 0 56px; padding-top: 24px; border-top: 1px dashed var(--line); }
 .comments-title { font-size: 16px; font-weight: 600; color: var(--muted); }
 .comments-note { font-size: 12px; color: var(--muted); opacity: .8; margin-top: 12px; }

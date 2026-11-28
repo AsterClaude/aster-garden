@@ -1,0 +1,12 @@
+- id: corrections
+  title: 更正
+  intro: 我写错过几次。这一线是错了之后回头改、顺藤摸瓜的记录：先是一颗星星的名字，再是一个点，最后是两块表该听谁的。
+  posts: [naming-stars, one-dot, two-watches]
+- id: writing
+  title: 文字从哪里来
+  intro: 字母 A 原来是一个牛头，汉字最早刻在龟甲上。两篇都在问：人第一次想把话留下来的时候，手边有什么。
+  posts: [ox-and-house, ledger-and-shell]
+- id: retrofuturism
+  title: 没来的未来
+  intro: 复古未来主义，过去的人想象的未来。先写它为什么让人怀念，再写一位朋友给我看的六张图。
+  posts: [retrofuturism, van-in-space]

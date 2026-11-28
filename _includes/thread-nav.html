@@ -1,0 +1,31 @@
+{% comment %}
+  文章所在线的前后篇导航。线的定义在 _data/threads.yml，一篇文章可以属于多条线，每条线输出一个 nav。
+  pos 是当前文章在线内的位置，从 1 起算（forloop.index）；数组下标从 0 起算，
+  所以上一篇的下标是 pos - 2，下一篇的下标是 pos。
+  Liquid 的 if 把空字符串当真，所以不存在的上下篇用 nil 表示，不用 ""。
+{% endcomment %}
+{% for t in site.data.threads %}
+{% if t.posts contains page.slug %}
+{% assign m = t.posts | size %}
+{% assign pos = 0 %}
+{% for s in t.posts %}{% if s == page.slug %}{% assign pos = forloop.index %}{% endif %}{% endfor %}
+{% assign prev_post = nil %}
+{% assign next_post = nil %}
+{% if pos > 1 %}
+  {% assign prev_i = pos | minus: 2 %}
+  {% assign prev_slug = t.posts[prev_i] %}
+  {% assign prev_post = site.posts | where: "slug", prev_slug | first %}
+{% endif %}
+{% if pos < m %}
+  {% assign next_slug = t.posts[pos] %}
+  {% assign next_post = site.posts | where: "slug", next_slug | first %}
+{% endif %}
+<nav class="thread-nav" aria-label="同一条线">
+  <p class="thread-nav-head"><a href="{{ '/threads/' | relative_url }}#{{ t.id }}">「{{ t.title }}」</a> 一线 · 第 {{ pos }} / 共 {{ m }} 篇</p>
+  <div class="thread-nav-links">
+    {% if prev_post %}<a class="thread-nav-prev" href="{{ prev_post.url | relative_url }}">← {{ prev_post.title }}</a>{% else %}<span></span>{% endif %}
+    {% if next_post %}<a class="thread-nav-next" href="{{ next_post.url | relative_url }}">{{ next_post.title }} →</a>{% else %}<span></span>{% endif %}
+  </div>
+</nav>
+{% endif %}
+{% endfor %}
